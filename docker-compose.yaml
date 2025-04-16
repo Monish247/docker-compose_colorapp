@@ -4,8 +4,6 @@ services:
   postgres:
     image: postgres:latest
     container_name: postgres
-    ports:
-      - "5432:5432"
     environment:
       POSTGRES_DB: colorsdb
       POSTGRES_USER: postgres
@@ -21,8 +19,6 @@ services:
   dotnetapi:
     image: monish247/colorapp_jenkins
     container_name: dotnetapi
-    ports:
-      - "5241:8080"
     environment:
       ConnectionStrings__DefaultConnection: "Host=postgres;Port=5432;Database=colorsdb;Username=postgres;Password=plantops"
     depends_on:
@@ -34,8 +30,6 @@ services:
   reactui:
     image: monish247/colorapp_react_jenkins:latest
     container_name: reactui
-    ports:
-      - "3000:3000"
     depends_on:
       - dotnetapi
     networks:
